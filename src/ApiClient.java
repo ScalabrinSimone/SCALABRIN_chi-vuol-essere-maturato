@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
 import java.io.IOException;
@@ -39,6 +41,16 @@ public class ApiClient
         catch (IOException | InterruptedException e)
         {
             return "Errore nella richiesta API.";
+        }
+
+        Gson gson = new Gson();
+        ApiResponse apiResponse = gson.fromJson(response.body(), ApiResponse.class);
+
+        //Ora possiamo accedere alle domande come oggetti Java
+        for (ApiQuestion q : apiResponse.results)
+        {
+            System.out.println(q.question);
+            System.out.println("Risposta corretta: " + q.correct_answer);
         }
 
         return response.body();
