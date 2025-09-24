@@ -5,7 +5,7 @@ public class Main
     public static void main(String[] args)
     {
         ApiClient client = new ApiClient();
-        String response = client.fetchQuestions(5, "multiply", "easy");
+        String response = client.fetchQuestions(5, "easy", "multiple");
         System.out.println(response);
     }
 }
